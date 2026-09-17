@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GCPP Getting Started — The Takshashila Institution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#620d3c;
+  --wine-dark:#4a0a2e;
+  --wine-soft:#f5e6ec;
+  --gold:#f1a222;
+  --gold-soft:#fcf0d9;
+  --teal:#2f6b6b;
+  --wine-tint:#b8809f;
+
+  --paper:#FFFFFF;
+  --deep:#F7F5F2;
+  --ink:#171413;
+  --ink-70:rgba(23,20,19,0.70);
+  --ink-50:rgba(23,20,19,0.50);
+  --ink-20:rgba(23,20,19,0.16);
+  --ink-10:rgba(23,20,19,0.08);
+
+  --sans:Inter,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --max:1240px;
+  --pad-x:40px;
+  --rule:1px solid var(--ink-20);
+}
+@media (max-width:960px){:root{--pad-x:24px}}
+@media (max-width:560px){:root{--pad-x:18px}}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+body{
+  margin:0;
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  color:var(--ink);
+  background:var(--paper);
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
+p{text-wrap:pretty;margin:0 0 16px;max-width:68ch}
+p:last-child{margin-bottom:0}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--ink-20)}
+a:hover{border-bottom-color:var(--ink)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+.container{max-width:var(--max);margin:0 auto}
+.section{padding:64px var(--pad-x);border-bottom:var(--rule)}
+.section.deep{background:var(--deep)}
+@media(max-width:560px){.section{padding:44px var(--pad-x)}}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-50);margin:0 0 20px;
+}
+h2{font-size:44px;line-height:1.05;letter-spacing:-.02em;margin-bottom:28px;max-width:24ch}
+h2 em{font-style:italic;color:var(--wine)}
+h3{font-size:18px;font-weight:500;line-height:1.3;margin-bottom:12px}
+.lede{font-size:22px;font-weight:300;line-height:1.45;color:var(--ink-70);max-width:56ch}
+@media(max-width:560px){
+  h2{font-size:32px}
+  .lede{font-size:18px}
+}
+.sub{font-size:26px;font-weight:500;letter-spacing:-.01em;line-height:1.15;color:var(--ink);margin:0 0 6px}
+.sub-wk{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);margin:0 0 4px}
+
+/* ---------- masthead ---------- */
+.masthead{background:var(--wine);color:#fff;padding:80px var(--pad-x) 64px;border-bottom:var(--rule)}
+.masthead .eyebrow{color:rgba(255,255,255,.55)}
+.masthead h1{font-size:72px;line-height:.98;letter-spacing:-.025em;max-width:14ch;margin-bottom:32px}
+.masthead h1 em{font-style:italic;color:var(--gold)}
+.masthead .lede{color:rgba(255,255,255,.85);max-width:58ch}
+.masthead .meta{
+  display:flex;flex-wrap:wrap;gap:0;margin-top:40px;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.masthead .meta div{
+  padding:20px 28px 0 0;margin-right:28px;
+  border-right:1px solid rgba(255,255,255,.18);
+}
+.masthead .meta div:last-child{border-right:none;margin-right:0;padding-right:0}
+.masthead .meta .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:8px}
+.masthead .meta .v{font-size:17px;color:#fff}
+@media(max-width:960px){.masthead h1{font-size:48px}}
+@media(max-width:560px){.masthead h1{font-size:44px}.masthead{padding-top:56px}.masthead .meta div{border-right:none;padding-bottom:8px}}
+
+/* ---------- specialisation switch ---------- */
+.switch{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:var(--rule)}
+.switch-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad-x);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.switch-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin-right:8px}
+.track-btn{
+  font-family:var(--sans);font-size:15px;font-weight:400;letter-spacing:.3px;
+  padding:9px 18px;cursor:pointer;background:var(--paper);color:var(--ink);
+  border:var(--rule);border-radius:0;transition:background .15s ease;
+}
+.track-btn:hover{background:var(--deep)}
+.track-btn[aria-pressed="true"]{background:var(--wine);border-color:var(--wine);color:#fff}
+.track-btn .abbr{font-family:var(--mono);font-size:11px;letter-spacing:.1em;opacity:.65;margin-left:8px}
+.switch-note{font-size:13px;color:var(--ink-50);margin:0;flex-basis:100%}
+
+/* ---------- layout helpers ---------- */
+.split{display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:start}
+@media(max-width:960px){.split{grid-template-columns:1fr;gap:32px}}
+
+.ruled{display:grid;grid-template-columns:repeat(3,1fr);border:var(--rule);margin:40px 0 0;list-style:none;padding:0}
+.ruled li{padding:26px 26px 30px;border-right:var(--rule);transition:background .15s ease}
+.ruled li:hover{background:var(--deep)}
+.deep .ruled li:hover{background:var(--paper)}
+.ruled li:last-child{border-right:none}
+.ruled .code{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--wine);display:block;margin-bottom:14px}
+.ruled .who{font-size:21px;font-weight:500;letter-spacing:-.005em;margin-bottom:8px}
+.ruled .what{font-size:14px;line-height:1.55;color:var(--ink-70);margin:0}
+.ruled.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:720px){
+  .ruled,.ruled.four{grid-template-columns:1fr}
+  .ruled li{border-right:none;border-bottom:var(--rule)}
+  .ruled li:last-child{border-bottom:none}
+}
+
+.aside{border-left:2px solid var(--wine);padding:4px 0 4px 30px;margin:28px 0 0}
+.aside .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);display:block;margin-bottom:10px}
+.aside p{font-size:15px;max-width:62ch}
+.aside ul{max-width:62ch;padding-left:20px;margin:0}
+.aside li{margin-bottom:8px}
+
+.invert{background:var(--ink);color:rgba(255,255,255,.85);padding:40px 36px}
+.invert .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
+.invert h3{color:#fff;font-size:26px;font-weight:500;letter-spacing:-.01em;line-height:1.15;margin-bottom:14px}
+.invert p{color:rgba(255,255,255,.85)}
+.invert ul{padding-left:20px;margin:0}
+.invert li{margin-bottom:10px}
+
+/* ---------- tables ---------- */
+.table-scroll{overflow-x:auto;margin:32px 0 0}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+caption{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);text-align:left;padding-bottom:14px}
+th{font-family:var(--mono);font-size:10.5px;font-weight:400;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-50);text-align:left;border-bottom:var(--rule);padding:10px 20px 10px 0}
+td{font-size:14px;line-height:1.55;border-bottom:var(--rule);padding:14px 20px 14px 0;vertical-align:top}
+th:last-child,td:last-child{padding-right:0}
+td.num{text-align:right;padding-right:0}
+.tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:4px 10px;border:var(--rule);white-space:nowrap;display:inline-block}
+.tag.must{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:600}
+.tag.grade{background:var(--wine);color:#fff;border-color:var(--wine)}
+.tag.opt{background:transparent;color:var(--ink-70)}
+
+/* ---------- week ribbon ---------- */
+.ribbon-scroll{overflow-x:auto;margin:40px 0 0;padding-bottom:4px}
+.ribbon{min-width:1000px;border:var(--rule);background:var(--paper)}
+.ribbon .weeks{display:grid;border-bottom:var(--rule)}
+.ribbon .wk{padding:13px 0 13px 10px;border-right:var(--rule);font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink)}
+.ribbon .wk:last-child{border-right:none}
+.ribbon .wk .d{display:block;font-size:10.5px;letter-spacing:.02em;color:var(--ink-70);margin-top:5px}
+.ribbon .wk.brk{background:var(--deep)}
+.ribbon .phases{display:grid;gap:0;padding:0}
+.ribbon .bar{
+  margin:14px 1px;padding:9px 12px;font-size:13px;line-height:1.25;
+  color:#fff;background:var(--wine);overflow:hidden;
+}
+.ribbon .bar.spec{background:var(--teal)}
+.ribbon .bar.conf{background:var(--gold);color:var(--ink);font-weight:600;font-size:12px;padding:9px 8px}
+.ribbon .bar.brk{background:var(--deep);color:var(--ink-70);border:var(--rule)}
+.ribbon .marks{display:grid;border-top:var(--rule);background:var(--deep)}
+.ribbon .mk{padding:14px 12px 16px;border-right:var(--rule);font-size:12.5px;line-height:1.35;color:var(--ink-70)}
+.ribbon .mk:last-child{border-right:none}
+.ribbon .mk b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--wine);font-weight:400;margin-bottom:7px}
+
+/* after week 12 — dated sequence */
+.after-h{font-size:21px;font-weight:500;letter-spacing:-.005em;margin:48px 0 0}
+.seq{list-style:none;margin:20px 0 0;padding:0;border-top:2px solid var(--ink)}
+.seq li{display:grid;grid-template-columns:210px 1fr;gap:28px;padding:15px 0;border-bottom:var(--rule);align-items:baseline}
+.seq .dt{font-size:16px;font-weight:500;letter-spacing:-.005em;line-height:1.25}
+.seq .dn{font-size:15px;font-weight:500;margin-bottom:4px}
+.seq .dx{font-size:14px;color:var(--ink-70);margin:0;max-width:64ch}
+@media(max-width:720px){.seq li{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- saturday shape ---------- */
+.day{display:grid;grid-template-columns:repeat(3,1fr);border:var(--rule);margin:28px 0 0}
+.day div{padding:14px 18px 15px;border-right:var(--rule)}
+.day div:last-child{border-right:none}
+.day .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--wine);display:block;margin-bottom:6px}
+.day .n{font-size:18px;font-weight:500;letter-spacing:-.005em}
+@media(max-width:720px){.day{grid-template-columns:1fr}.day div{border-right:none;border-bottom:var(--rule)}.day div:last-child{border-bottom:none}}
+
+/* ---------- charts ---------- */
+.chart{margin:36px 0 0;max-width:820px}
+.chart .ctitle{font-size:18px;font-weight:500;margin:0 0 6px}
+.chart .csub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-50);margin:0 0 22px}
+.chart .cnote{font-size:14px;line-height:1.55;color:var(--ink-70);margin:18px 0 0;max-width:68ch}
+
+.stack{display:flex;width:100%;border:var(--rule);background:var(--paper)}
+.stack span{padding:16px 12px;font-size:12.5px;line-height:1.2;color:#fff;border-right:1px solid rgba(255,255,255,.35);overflow:hidden}
+.stack span:last-child{border-right:none}
+.stack .s1{background:var(--wine)}
+.stack .s2{background:var(--wine-tint);color:var(--ink)}
+.stack .s3{background:var(--teal)}
+.stack .s4{background:var(--gold);color:var(--ink);font-weight:600}
+.stack-key{display:flex;flex-wrap:wrap;gap:8px 28px;margin:16px 0 0;padding:0;list-style:none}
+.stack-key li{font-size:13px;color:var(--ink-70);display:flex;align-items:baseline;gap:9px}
+.stack-key i{width:11px;height:11px;display:inline-block;flex:0 0 auto;transform:translateY(1px)}
+.stack-key .pc{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-50)}
+
+.bars{margin:0;padding:0;list-style:none;border-top:var(--rule)}
+.bars li{display:grid;grid-template-columns:200px 1fr 54px;gap:16px;align-items:center;padding:12px 0;border-bottom:var(--rule)}
+.bars .lab{font-size:15px}
+.bars .track{display:block;background:var(--ink-10);height:22px}
+.bars .fill{display:block;background:var(--wine);height:22px}
+.bars .pts{font-family:var(--mono);font-size:12px;color:var(--ink-70);text-align:right}
+@media(max-width:560px){.bars li{grid-template-columns:130px 1fr 46px;gap:10px}.bars .lab{font-size:13.5px}}
+
+/* ---------- important dates ---------- */
+.dates{list-style:none;margin:32px 0 0;padding:0;border-top:2px solid var(--ink)}
+.dates li{
+  display:grid;grid-template-columns:150px 1fr 150px;gap:24px;
+  padding:13px 0;border-bottom:var(--rule);align-items:baseline;
+  transition:background .15s ease;
+}
+.dates li:hover{background:var(--deep)}
+.d-when{line-height:1.15}
+.d-day{font-size:22px;font-weight:400;letter-spacing:-.015em;color:var(--wine)}
+.d-mon{font-size:14px;color:var(--ink);margin-left:6px}
+.d-approx{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-50);margin-top:3px}
+.d-name{font-size:16px;font-weight:500;letter-spacing:-.005em;margin-bottom:3px}
+.d-note{font-size:14px;color:var(--ink-70);margin:0;max-width:60ch}
+.d-who{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+@media(max-width:860px){
+  .dates li{grid-template-columns:130px 1fr;gap:18px}
+  .d-who{grid-column:2;justify-content:flex-start;margin-top:6px}
+}
+@media(max-width:560px){
+  .dates li{grid-template-columns:1fr;gap:6px}
+  .d-day{font-size:19px}
+  .d-approx{display:inline;margin-left:8px}
+  .d-who{grid-column:1}
+}
+
+/* ---------- faq ---------- */
+.faq{margin:40px 0 0}
+.faq h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);font-weight:400;margin:44px 0 0}
+.faq h3:first-child{margin-top:0}
+details{border-top:var(--rule)}
+.faq h3 + details{border-top:2px solid var(--ink);margin-top:14px}
+summary{cursor:pointer;padding:20px 40px 20px 0;font-size:17px;font-weight:500;list-style:none;position:relative;transition:background .15s ease}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';position:absolute;right:6px;top:19px;font-family:var(--mono);font-size:17px;color:var(--wine)}
+details[open] summary::after{content:'–'}
+.details-body{padding:0 0 26px;max-width:72ch}
+.details-body p{font-size:15px}
+.details-body ul{padding-left:20px;margin:0 0 16px}
+.details-body li{margin-bottom:8px}
+
+/* ---------- contact ---------- */
+.contacts{display:grid;grid-template-columns:repeat(3,1fr);border:var(--rule);margin:40px 0 0}
+.contacts div{padding:28px 28px 32px;border-right:var(--rule);transition:background .15s ease}
+.contacts div:hover{background:var(--deep)}
+.deep .contacts div:hover{background:var(--paper)}
+.contacts div:last-child{border-right:none}
+.contacts .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--wine);display:block;margin-bottom:12px}
+.contacts .n{font-size:21px;font-weight:500;letter-spacing:-.005em;margin-bottom:10px;line-height:1.2}
+.contacts a{font-size:14px;word-break:break-word}
+@media(max-width:720px){.contacts{grid-template-columns:1fr}.contacts div{border-right:none;border-bottom:var(--rule)}.contacts div:last-child{border-bottom:none}}
+
+footer{background:var(--wine);color:rgba(255,255,255,.8);padding:44px var(--pad-x) calc(44px + env(safe-area-inset-bottom,0px))}
+footer .inner{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline}
+footer span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+footer strong{font-weight:400;font-size:15px;color:#fff}
+</style>
+</head>
+<body>
+
+
+<header class="masthead">
+  <div class="container">
+    <p class="eyebrow">Graduate Certificate in Public Policy</p>
+    <h1>Getting you <em>started</em></h1>
+    <p class="lede">Everything you need to know before Week 1 — an introduction to the curriculum, the timeline, and how to navigate the course.</p>
+    <div class="meta">
+      <div><span class="k">Programme</span><span class="v">12 weeks · online</span></div>
+      <div><span class="k">Webinars</span><span class="v">Saturdays, 9:30–15:30 IST</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="switch" aria-label="Choose your specialisation">
+  <div class="switch-inner">
+    <span class="switch-label">Your specialisation</span>
+    <button class="track-btn" aria-pressed="true" data-track="app">Advanced Public Policy<span class="abbr">APP</span></button>
+    <button class="track-btn" aria-pressed="false" data-track="tp">Technology and Policy<span class="abbr">TP</span></button>
+    <button class="track-btn" aria-pressed="false" data-track="dfa">Defence and Foreign Affairs<span class="abbr">DFA</span></button>
+  </div>
+</nav>
+
+<!-- ============ 1. SHAPE ============ -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">First, the shape of the thing</p>
+    <div class="split">
+      <div>
+        <h2>How the twelve weeks are <em>structured</em></h2>
+        <p>Everyone in the cohort studies the same three core modules for the first four weeks. Week 5 is the Takshashila Academic Conference, which closes the core curriculum. From Week 6 the cohort splits and you follow your own specialisation for seven weeks, ending in a workshop.</p>
+        <p>Assessment differs by specialisation and nothing else does. Advanced Public Policy and Technology and Policy are graded on published work and a final assignment; Defence and Foreign Affairs is graded on two quizzes. The switcher above sets the page to yours.</p>
+      </div>
+      <div class="aside">
+        <span class="lbl">Five things to keep in mind</span>
+        <ul>
+          <li>Be punctual. We value timeliness highly at Takshashila and will begin all sessions on time.</li>
+          <li>Do not interrupt others during webinars; wait for your turn to speak.</li>
+          <li>Ensure that you follow Takshashila's anti-plagiarism policy.</li>
+          <li>Often, students will be a part of candid conversations. Maintain confidentiality if any faculty, student, or guest requests it.</li>
+          <li>Maintain a convivial, collegial atmosphere.</li>
+        </ul>
+      </div>
+    </div>
+
+    <ol class="ruled">
+      <li>
+        <span class="code">Weeks 1–4</span>
+        <div class="who">Core modules</div>
+        <p class="what">Policy analysis, economic reasoning and communication. Identical for all three specialisations.</p>
+      </li>
+      <li>
+        <span class="code">Week 5</span>
+        <div class="who">Academic Conference</div>
+        <p class="what">Two days, online, parallel thematic tracks with external speakers. Compulsory, and the point at which you may switch specialisation.</p>
+      </li>
+      <li>
+        <span class="code">Weeks 6–12</span>
+        <div class="who">Specialisation</div>
+        <p class="what">Four modules in your own stream, discussion-led rather than lecture-led, closing with a workshop.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 2. WEEK BY WEEK ============ -->
+<section class="section deep">
+  <div class="container">
+    <p class="eyebrow">Week by week</p>
+    <h2>The twelve weeks, <em>laid out</em></h2>
+
+    <!-- APP + TP ribbon -->
+    <div data-track="app tp">
+      <div class="ribbon-scroll">
+        <div class="ribbon">
+          <div class="weeks" style="grid-template-columns:repeat(12,1fr)">
+            <div class="wk">W1<span class="d">5 Sep</span></div>
+            <div class="wk">W2<span class="d">12 Sep</span></div>
+            <div class="wk">W3<span class="d">19 Sep</span></div>
+            <div class="wk">W4<span class="d">26 Sep</span></div>
+            <div class="wk">W5<span class="d">3–4 Oct</span></div>
+            <div class="wk">W6<span class="d">10 Oct</span></div>
+            <div class="wk">W7<span class="d">17 Oct</span></div>
+            <div class="wk">W8<span class="d">24 Oct</span></div>
+            <div class="wk">W9<span class="d">31 Oct</span></div>
+            <div class="wk">W10<span class="d">7 Nov</span></div>
+            <div class="wk">W11<span class="d">13–15 Nov</span></div>
+            <div class="wk">W12<span class="d">21 Nov</span></div>
+          </div>
+          <div class="phases" style="grid-template-columns:repeat(12,1fr)">
+            <div class="bar" style="grid-column:1/5">Core modules</div>
+            <div class="bar conf" style="grid-column:5/6">Conference</div>
+            <div class="bar spec" style="grid-column:6/13">Specialisation modules — plus public engagement running alongside</div>
+          </div>
+          <div class="marks" style="grid-template-columns:repeat(12,1fr)">
+            <div class="mk" style="grid-column:1/5"><b>Weeks 1–4</b>Three core modules. Squad activities begin.</div>
+            <div class="mk" style="grid-column:5/6"><b>Week 5</b>Academic Conference, both days. Last point at which you may switch specialisation.</div>
+            <div class="mk" style="grid-column:6/11"><b>Weeks 6–10</b>Specialisation modules, with public engagement running alongside. The Community Organisation Exercise is briefed in Week 4 and is due at the end of this stretch.</div>
+            <div class="mk" style="grid-column:11/12"><b>Week 11</b>Policy Simulation Workshop in Bengaluru, all three days.</div>
+            <div class="mk" style="grid-column:12/13"><b>Week 12</b>Final webinar. The final assignment is released.</div>
+          </div>
+        </div>
+      </div>
+      <h3 class="after-h">After Week 12</h3>
+      <ol class="seq">
+        <li>
+          <div class="dt">21 November</div>
+          <div><div class="dn">Final assignment released</div><p class="dx">Issued after the last webinar. You have about two weeks to work on it.</p></div>
+        </li>
+        <li>
+          <div class="dt">First half of December</div>
+          <div><div class="dn">Final assignment and public engagement submissions due</div><p class="dx">The exact date will be confirmed when the submission form is circulated.</p></div>
+        </li>
+        <li>
+          <div class="dt">Shortly after submission</div>
+          <div><div class="dn">Group viva</div><p class="dx">A group discussion with some of your peers and the evaluator about your submissions, worth half the final assignment mark.</p></div>
+        </li>
+        <li>
+          <div class="dt">Once evaluation concludes</div>
+          <div><div class="dn">Final grades, then certificates</div><p class="dx">Grades are shared with you first; certificates follow.</p></div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- DFA ribbon -->
+    <div data-track="dfa" hidden>
+      <div class="ribbon-scroll">
+        <div class="ribbon">
+          <div class="weeks" style="grid-template-columns:repeat(5,1fr) .7fr repeat(7,1fr)">
+            <div class="wk">W1<span class="d">5 Sep</span></div>
+            <div class="wk">W2<span class="d">12 Sep</span></div>
+            <div class="wk">W3<span class="d">19 Sep</span></div>
+            <div class="wk">W4<span class="d">26 Sep</span></div>
+            <div class="wk">W5<span class="d">3–4 Oct</span></div>
+            <div class="wk brk">Break<span class="d">10 Oct</span></div>
+            <div class="wk">W6<span class="d">17 Oct</span></div>
+            <div class="wk">W7<span class="d">24 Oct</span></div>
+            <div class="wk">W8<span class="d">31 Oct</span></div>
+            <div class="wk">W9<span class="d">7 Nov</span></div>
+            <div class="wk">W10<span class="d">14 Nov</span></div>
+            <div class="wk">W11<span class="d">21 Nov</span></div>
+            <div class="wk">W12<span class="d">27–29 Nov</span></div>
+          </div>
+          <div class="phases" style="grid-template-columns:repeat(5,1fr) .7fr repeat(7,1fr)">
+            <div class="bar" style="grid-column:1/5">Core modules</div>
+            <div class="bar conf" style="grid-column:5/6">Conference</div>
+            <div class="bar brk" style="grid-column:6/7">Break</div>
+            <div class="bar spec" style="grid-column:7/14">Specialisation modules — plus occasional midweek guest sessions, 19:00–20:30</div>
+          </div>
+          <div class="marks" style="grid-template-columns:repeat(5,1fr) .7fr repeat(7,1fr)">
+            <div class="mk" style="grid-column:1/5"><b>Weeks 1–4</b>Three core modules, shared with the whole cohort.</div>
+            <div class="mk" style="grid-column:5/7"><b>Week 5</b>Academic Conference, both days. Quiz 1 opens the day after and stays open ten days.</div>
+            <div class="mk" style="grid-column:7/13"><b>Weeks 6–11</b>Four specialisation modules, plus midweek guest sessions with former ambassadors and practitioners.</div>
+            <div class="mk" style="grid-column:13/14"><b>Week 12</b>Exercise AMRUT, online, all three days.</div>
+          </div>
+        </div>
+      </div>
+      <h3 class="after-h">After Week 12</h3>
+      <ol class="seq">
+        <li>
+          <div class="dt">6 December</div>
+          <div><div class="dn">Final quiz, slot 1</div><p class="dx">One hour, 20:00–21:00.</p></div>
+        </li>
+        <li>
+          <div class="dt">13 December</div>
+          <div><div class="dn">Final quiz, slot 2</div><p class="dx">Same format. Sit either date, not both — there is no need to tell the team which.</p></div>
+        </li>
+        <li>
+          <div class="dt">Once evaluation concludes</div>
+          <div><div class="dn">Final grades, then certificates</div><p class="dx">Grades are shared with you first; certificates follow.</p></div>
+        </li>
+      </ol>
+    </div>
+
+    <h3 style="margin-top:56px;font-size:26px;letter-spacing:-.01em">What a Saturday looks like</h3>
+    <div class="day">
+      <div><span class="t">Session 1</span><div class="n">09:30 – 11:00</div></div>
+      <div><span class="t">Session 2</span><div class="n">11:30 – 13:00</div></div>
+      <div><span class="t">Session 3</span><div class="n">14:00 – 15:30</div></div>
+    </div>
+    <div class="aside">
+      <span class="lbl">Joining</span>
+      <p>Meeting links open fifteen minutes early. Every link is in the Google Calendar event for that webinar — click the event, and the pop-up carries the link. There are occasional weekday webinars on top of this, typically on Wednesdays at 7 pm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2b. KEY DATES ============ -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Key dates</p>
+    <h2>Important Dates to <em>Note</em></h2>
+
+    <ol class="dates">
+      <li>
+        <div class="d-when"><span class="d-day">5</span><span class="d-mon">September</span></div>
+        <div class="d-what"><div class="d-name">Programme begins</div><p class="d-note">First set of Saturday webinars.</p></div>
+        <div class="d-who"></div>
+      </li>
+      <li>
+        <div class="d-when"><span class="d-day">3 &amp; 4</span><span class="d-mon">October</span></div>
+        <div class="d-what"><div class="d-name">Takshashila Academic Conference</div><p class="d-note">Both days, online. Attendance is recorded.</p></div>
+        <div class="d-who"><span class="tag must">Compulsory</span></div>
+      </li>
+      <li data-track="dfa">
+        <div class="d-when"><span class="d-day">5–15</span><span class="d-mon">October</span></div>
+        <div class="d-what"><div class="d-name">Quiz 1 window</div><p class="d-note">Open ten days from the day after the conference. One attempt, about 30 minutes.</p></div>
+        <div class="d-who"><span class="tag grade">40% of grade</span></div>
+      </li>
+      <li data-track="dfa">
+        <div class="d-when"><span class="d-day">10</span><span class="d-mon">October</span></div>
+        <div class="d-what"><div class="d-name">Midterm break</div><p class="d-note">No webinars this weekend.</p></div>
+        <div class="d-who"></div>
+      </li>
+      <li data-track="app tp">
+        <div class="d-when"><span class="d-day">7</span><span class="d-mon">November</span><span class="d-approx">approximate</span></div>
+        <div class="d-what"><div class="d-name">Community Organisation Exercise due</div><p class="d-note">Briefed in Week 4. The exact date comes with the brief.</p></div>
+        <div class="d-who"><span class="tag grade">5 points</span></div>
+      </li>
+      <li data-track="app tp">
+        <div class="d-when"><span class="d-day">13–15</span><span class="d-mon">November</span></div>
+        <div class="d-what"><div class="d-name">Policy Simulation Workshop</div><p class="d-note">In person, Bengaluru, over two nights and three days.</p></div>
+        <div class="d-who"><span class="tag must">Compulsory</span></div>
+      </li>
+      <li data-track="app tp">
+        <div class="d-when"><span class="d-day">21</span><span class="d-mon">November</span></div>
+        <div class="d-what"><div class="d-name">Final webinar</div><p class="d-note">The final assignment is released the same week.</p></div>
+        <div class="d-who"></div>
+      </li>
+      <li data-track="dfa">
+        <div class="d-when"><span class="d-day">27–29</span><span class="d-mon">November</span></div>
+        <div class="d-what"><div class="d-name">Exercise AMRUT</div><p class="d-note">Online. Full days on the 27th and 28th; ends 14:00 on the 29th.</p></div>
+        <div class="d-who"><span class="tag must">Compulsory</span></div>
+      </li>
+      <li data-track="app tp">
+        <div class="d-when"><span class="d-day">Early</span><span class="d-mon">December</span><span class="d-approx">date to be confirmed</span></div>
+        <div class="d-what"><div class="d-name">Final assignment and public engagement due</div><p class="d-note">Confirmed when the submission form is circulated.</p></div>
+        <div class="d-who"><span class="tag grade">50% of grade</span></div>
+      </li>
+      <li data-track="dfa">
+        <div class="d-when"><span class="d-day">6</span><span class="d-mon">December</span><span class="d-approx">20:00–21:00</span></div>
+        <div class="d-what"><div class="d-name">Final quiz, slot 1</div><p class="d-note">One hour, multiple choice.</p></div>
+        <div class="d-who"><span class="tag grade">60% of grade</span></div>
+      </li>
+      <li data-track="dfa">
+        <div class="d-when"><span class="d-day">13</span><span class="d-mon">December</span><span class="d-approx">20:00–21:00</span></div>
+        <div class="d-what"><div class="d-name">Final quiz, slot 2</div><p class="d-note">Sit either date, not both.</p></div>
+        <div class="d-who"><span class="tag grade">60% of grade</span></div>
+      </li>
+    </ol>
+    <div class="aside">
+      <span class="lbl">On the dates</span>
+      <p>These dates are final. Anything not yet fixed is flagged above and will be confirmed nearer the time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. CURRICULUM ============ -->
+<section class="section deep">
+  <div class="container">
+    <p class="eyebrow">Curriculum</p>
+    <h2>What you will <em>study</em></h2>
+
+    <p class="sub-wk" style="margin-top:40px">Weeks 1 to 4 · everybody</p>
+    <h3 class="sub">Core curriculum</h3>
+    <ol class="ruled">
+      <li><span class="code">CP1</span><div class="who">Policy Analysis and Concepts</div><p class="what">How a policy system works, and the frameworks used to take a problem apart.</p></li>
+      <li><span class="code">CP2</span><div class="who">Economic Reasoning for Public Policy I</div><p class="what">Markets, prices, demand and supply, and where markets fail. Short videos accompany the readings.</p></li>
+      <li><span class="code">CP3</span><div class="who">Effective Communication and Media Engagement</div><p class="what">Writing for public policy, and making an argument land outside a seminar room.</p></li>
+    </ol>
+
+    <div data-track="app">
+      <p class="sub-wk" style="margin-top:60px">Weeks 6 to 12</p>
+      <h3 class="sub">Advanced Public Policy</h3>
+      <ol class="ruled">
+        <li><span class="code">CP4</span><div class="who">Frameworks for Effecting Change</div><p class="what">How change is actually brought about inside governance systems.</p></li>
+        <li><span class="code">CP5</span><div class="who">Economic Reasoning for Public Policy</div><p class="what">The second half of the economics, building directly on CP2.</p></li>
+        <li><span class="code">CP6</span><div class="who">Complexity Science</div><p class="what">Systems that do not respond in straight lines, and what that means for policy design.</p></li>
+      </ol>
+    </div>
+
+    <div data-track="tp" hidden>
+      <p class="sub-wk" style="margin-top:60px">Weeks 6 to 12</p>
+      <h3 class="sub">Technology and Policy</h3>
+      <ol class="ruled four">
+        <li><span class="code">CT4</span><div class="who">Politics and Policy of AI</div><p class="what">What artificial intelligence has already done to politics and policymaking.</p></li>
+        <li><span class="code">CT2</span><div class="who">Social Impact Analysis</div><p class="what">Ethical reasoning, governance frameworks, and technology directed at social good.</p></li>
+        <li><span class="code">CT3</span><div class="who">Information Economics</div><p class="what">How information, its asymmetries and its infrastructure shape markets.</p></li>
+        <li><span class="code">CT8</span><div class="who">High Tech Geopolitics</div><p class="what">Semiconductors, critical minerals, and India's research and development ecosystem.</p></li>
+      </ol>
+    </div>
+
+    <div data-track="dfa" hidden>
+      <p class="sub-wk" style="margin-top:60px">Weeks 6 to 12</p>
+      <h3 class="sub">Defence and Foreign Affairs</h3>
+      <ol class="ruled">
+        <li><span class="code">CS1</span><div class="who">Strategic Studies and International Relations</div><p class="what">Military power in global affairs, and where India sits in it.</p></li>
+        <li><span class="code">CS2</span><div class="who">Introduction to Arthashastra</div><p class="what">A classical text read for what it still says about statecraft today.</p></li>
+        <li><span class="code">CS3</span><div class="who">Strategic Economics</div><p class="what">Sanctions, tariffs and supply chains as instruments of national power.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. GRADING ============ -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Assessment and grading</p>
+
+    <!-- APP + TP -->
+    <div data-track="app tp">
+      <h2>How you are <em>assessed</em></h2>
+
+      <div class="chart">
+        <p class="ctitle">Where your 100% comes from</p>
+        <p class="csub">Advanced Public Policy and Technology and Policy</p>
+        <div class="stack">
+          <span class="s1" style="width:25%">Policy outputs<br>25%</span>
+          <span class="s2" style="width:12.5%">Community<br>12.5%</span>
+          <span class="s3" style="width:12.5%">Peer review<br>12.5%</span>
+          <span class="s4" style="width:50%">Final assignment — written submission and viva, equally weighted<br>50%</span>
+        </div>
+        <ul class="stack-key">
+          <li><i style="background:var(--wine)"></i>Policy outputs <span class="pc">10 points</span></li>
+          <li><i style="background:var(--wine-tint)"></i>Community Organisation Exercise <span class="pc">5 points</span></li>
+          <li><i style="background:var(--teal)"></i>Think Together, Learn Together <span class="pc">5 points</span></li>
+          <li><i style="background:var(--gold)"></i>Final assignment <span class="pc">50%</span></li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top:56px;font-size:26px;letter-spacing:-.01em">1 · Public engagement — 50%</h3>
+      <p>This component runs alongside the webinars from now until roughly two weeks after the final webinar, so you can apply what you are learning as you learn it. It has three parts.</p>
+
+      <div class="chart">
+        <p class="ctitle">Policy outputs — what each one is worth</p>
+        <p class="csub">Points, capped at 10 · any combination</p>
+        <ul class="bars">
+          <li><span class="lab">Op-ed</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="pts">10</span></li>
+          <li><span class="lab">Conference talk</span><span class="track"><span class="fill" style="width:50%"></span></span><span class="pts">5</span></li>
+          <li><span class="lab">Podcast</span><span class="track"><span class="fill" style="width:40%"></span></span><span class="pts">4</span></li>
+          <li data-track="tp"><span class="lab">Class debate — persuaded</span><span class="track"><span class="fill" style="width:40%"></span></span><span class="pts">4</span></li>
+          <li><span class="lab">Blog post</span><span class="track"><span class="fill" style="width:20%"></span></span><span class="pts">2</span></li>
+          <li data-track="tp"><span class="lab">Class debate — participation</span><span class="track"><span class="fill" style="width:20%"></span></span><span class="pts">2</span></li>
+        </ul>
+        <p class="cnote">Points reflect the effort and the editorial gatekeeping each format demands. One op-ed reaches the cap on its own; five blog posts do the same. Going past 10 is welcome but is not scored higher.</p>
+      </div>
+
+      <div class="split" style="margin-top:44px">
+        <div>
+          <h3>What makes something a policy output</h3>
+          <p>Policy analysis. Not an opinion, not a reflection on the week, not a conference you attended — an argument that examines a policy, weighs what exists against what could exist, and reaches somewhere. A blog gives you freedom over how much of a problem you bite off; an op-ed needs a tighter structure and a clear recommendation at the end.</p>
+          <h3 style="margin-top:32px">Where it can be published</h3>
+          <p>Blog posts: Substack, LinkedIn, Medium, Blogspot or your own site. Op-eds: a recognised news outlet — a daily, a digital platform, a weekly magazine or a newsletter. Podcasts: audio or video, on Spotify, Apple Podcasts or a channel of your own, with at least two people speaking. Vernacular writing is welcome.</p>
+        </div>
+        <div class="invert">
+          <span class="lbl">If you cannot publish</span>
+          <p>Some employers restrict public writing. If yours does, send your blog post in as an unpublished document and it will be considered. An op-ed will not work in that case, since the outlet is part of what it is.</p>
+          <p>Technology and Policy students have a second route: the in-class debates. Two points for taking part, four if the room votes your way.</p>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>The other two parts of public engagement</caption>
+          <thead><tr><th style="width:26%">Component</th><th style="width:12%">Points</th><th>What it involves</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Community Organisation Exercise</td>
+              <td><span class="tag grade">5</span></td>
+              <td>An individual exercise, briefed in Week 4 and due around Week 10. You bring together people from your network on a question that matters to several of them, steer the conversation, document it, and share what you learned. Interactive rather than analytical.</td>
+            </tr>
+            <tr>
+              <td>Think Together, Learn Together<br><span style="color:var(--ink-50);font-size:13px">peer review</span></td>
+              <td><span class="tag grade">5</span></td>
+              <td>Your squad grades you at the end on how well you worked with them across the three to four squad activities and the workshop.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:56px;font-size:26px;letter-spacing:-.01em">2 · Final assignment — 50%</h3>
+      <div class="split">
+        <div>
+          <p>An individual submission, released after the final webinar in Week 12, with about two weeks to work on it. You choose between two problems: formulate a policy solution or analyse a policy or bill using frameworks from the programme.</p>
+          <p>The written submission is worth half and the viva the other half. The viva is a ten to fifteen minute conversation with an evaluator and three or four of your peers about your own submission — your problem statement, the market failures you identified, your key takeaways, and where the work could go next. It is deliberately informal.</p>
+        </div>
+        <div class="aside">
+          <span class="lbl">Why there is a viva at all</span>
+          <p>Artificial intelligence is encouraged as a study tool and the programme will show you how to use it well. It is not a substitute for your own analysis. The viva exists so that understanding, rather than output, is what gets assessed — and because articulating a policy argument out loud is most of the job.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DFA -->
+    <div data-track="dfa" hidden>
+      <h2>How you are <em>assessed</em></h2>
+      <p class="lede">Defence and Foreign Affairs has no public engagement component and no final assignment. Your grade is the two quizzes.</p>
+
+      <div class="chart">
+        <p class="ctitle">Where your 100% comes from</p>
+        <p class="csub">Defence and Foreign Affairs</p>
+        <div class="stack">
+          <span class="s1" style="width:40%">Quiz 1<br>40%</span>
+          <span class="s4" style="width:60%">Quiz 2 — final evaluation<br>60%</span>
+        </div>
+        <p class="cnote">Both quizzes are multiple choice and timed.</p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>How the two quizzes work</caption>
+          <thead><tr><th style="width:18%">Quiz</th><th style="width:14%">Weight</th><th style="width:22%">When</th><th>What to expect</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Quiz 1</td>
+              <td><span class="tag grade">40%</span></td>
+              <td>Released the day after the Academic Conference, open for ten days</td>
+              <td>Covers the core modules. Multiple choice, timed at about 30 minutes, one attempt only. Keep one of those ten days free — once you start, that is your attempt.</td>
+            </tr>
+            <tr>
+              <td>Quiz 2<br><span style="color:var(--ink-50);font-size:13px">final evaluation</span></td>
+              <td><span class="tag grade">60%</span></td>
+              <td>6 December or 13 December, 20:00–21:00</td>
+              <td>Held after Exercise AMRUT. Two slots on consecutive Sundays; sit whichever suits you, not both. One hour, multiple choice. You do not need to tell the team which date you are taking — just log in and start.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="aside">
+        <span class="lbl">Getting to the quiz</span>
+        <p>The link comes by email to the Defence and Foreign Affairs cohort when each quiz opens. If it has not reached you by the time a quiz window starts, write to <a href="mailto:dfa@takshashila.org.in">dfa@takshashila.org.in</a> rather than waiting.</p>
+      </div>
+
+      <div class="invert" style="margin-top:40px">
+        <span class="lbl">What the certificate needs</span>
+        <p>Both quizzes, both days of the Academic Conference, and all three days of Exercise AMRUT. Attendance at the ordinary Saturday webinars is not graded — but Exercise AMRUT is a simulation, and missing a day of it means you receive a Citation rather than a completed certificate until you sit the exercise with a later cohort.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. WORKSHOP ============ -->
+<section class="section deep">
+  <div class="container">
+    <p class="eyebrow">The workshop</p>
+
+    <div data-track="app tp">
+      <div class="split">
+        <div>
+          <h2>Three days in <em>Bengaluru</em></h2>
+          <p>The Policy Simulation Workshop runs from Friday 13 to Sunday 15 November at the Takshashila office on Church Street, Bengaluru — two nights and three days, in person. Day 1 begins at 11:30 and Day 3 ends around 16:00, though those timings are still tentative. Book travel around them.</p>
+          <p>You will be given a real policy problem that people in government or industry are working on now, and use the Emerging Tech Governance Framework — built in house, derived from Bardach — to work it through in groups. The groups compete, and there are negotiation and role-playing games around the eight steps.</p>
+          <p>Logistics come by email nearer the time. Attendance on all three days is required for the certificate.</p>
+        </div>
+        <div class="invert">
+          <span class="lbl">Compulsory</span>
+          <h3>13–15 November</h3>
+          <p>In person, Bengaluru. All three days.</p>
+          <p style="margin-top:20px">This workshop is for Advanced Public Policy and Technology and Policy only. Defence and Foreign Affairs has its own, online, later in November.</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-track="dfa" hidden>
+      <div class="split">
+        <div>
+          <h2>Exercise AMRUT, <em>online</em></h2>
+          <p>Exercise AMRUT runs from Friday 27 to Sunday 29 November and is entirely online. The 27th and 28th run the full day; the 29th ends at 14:00. It is a simulation exercise and it closes the webinars for the specialisation.</p>
+          <p>Attendance on all three days is required. If work makes one of the days impossible, you can sit Exercise AMRUT with a later cohort — but until you do, you receive a Citation rather than a completed certificate, so it is worth protecting the dates now.</p>
+          <p>The in-person workshop on 13–15 November is for Advanced Public Policy and Technology and Policy. Defence and Foreign Affairs students do not attend it.</p>
+        </div>
+        <div class="invert">
+          <span class="lbl">Compulsory</span>
+          <h3>27–29 November</h3>
+          <p>Online. All three days. Full days on the 27th and 28th; ends 14:00 on the 29th.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. PLATFORMS ============ -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Where everything lives</p>
+    <h2>Four places to <em>keep an eye on</em></h2>
+    <p>Refer to your onboarding email for the links.</p>
+    <ol class="ruled four">
+      <li>
+        <span class="code">01</span>
+        <div class="who">Open Takshashila</div>
+        <p class="what">Your GCPP45 space: announcements, the Learner's Guide, readings, recordings, the forum, the code of conduct. Hosted on Mighty Networks — the mobile app works, and the cohort sits under <strong>Learn Together</strong>. Log in with the same credentials you use in the browser or you will only see public groups like WaterCooler.</p>
+      </li>
+      <li>
+        <span class="code">02</span>
+        <div class="who">Email</div>
+        <p class="what">Everything important is emailed as well as posted. Squad activities, submission forms, workshop logistics and quiz links all arrive this way.</p>
+      </li>
+      <li>
+        <span class="code">03</span>
+        <div class="who">Google Calendar</div>
+        <p class="what">The schedule, with the webinar link inside each event. Join from the calendar rather than hunting for a link elsewhere.</p>
+      </li>
+      <li>
+        <span class="code">04</span>
+        <div class="who">NotebookLM</div>
+        <p class="what">Optional, and useful. A condensed PDF of every module's readings sits in the reading library on the Learner's Guide. It works only from what you upload, so it will not invent anything.</p>
+      </li>
+    </ol>
+
+    <div class="split" style="margin-top:56px">
+      <div>
+        <h3>Finding a recording or a reading</h3>
+        <p>Open Takshashila → Learner's Guide → scroll to Resources. Each section is named after the webinar it belongs to, so a session called "An Introduction to Economic Reasoning" has a section by that name holding its recording and every reading, hyperlinked. Recordings appear 24 to 48 hours after the session.</p>
+        <h3 style="margin-top:32px">Using NotebookLM well</h3>
+        <p>One module per notebook. Uploading all seventeen sources into a single notebook is the common mistake — the modules bleed into one another and the answers get muddled. Once you know the material you can combine the economics modules, which build on each other, and look for patterns across them.</p>
+      </div>
+      <div class="aside">
+        <span class="lbl">Asking questions</span>
+        <p>Use the forum in the GCPP45 space, not WaterCooler — WaterCooler is public and open to anyone on Open Takshashila. The forum is where you post something you read during the week and want to argue about, which is a large part of how the cohort learns from itself.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 7b. PLAGIARISM ============ -->
+<section class="section deep">
+  <div class="container">
+    <p class="eyebrow">Academic integrity</p>
+    <h2>The anti-plagiarism <em>policy</em></h2>
+    <p class="lede">Takshashila treats academic integrity as a prerequisite, not a formality. Collaboration is encouraged; reproducing someone else's work is not.</p>
+
+    <div class="split" style="margin-top:44px">
+      <div>
+        <h3 class="sub">What counts as plagiarism</h3>
+        <p>To plagiarise is to pass off another person's ideas or words as your own, to use their work without crediting the source, or to present something derived from an existing source as new and original. In practice that covers:</p>
+        <ul style="max-width:64ch;padding-left:20px">
+          <li>Turning in someone else's work as your own.</li>
+          <li>Copying words or ideas from someone else without giving credit.</li>
+          <li>Failing to put a quotation in quotation marks.</li>
+          <li>Giving incorrect information about the source of a quotation.</li>
+          <li>Changing the words but copying a source's sentence structure without giving credit.</li>
+          <li>Copying so many words or ideas from a source that they make up the majority of your work — whether or not you give credit.</li>
+        </ul>
+        <p>Copying or reproducing another student's work for quizzes and assignments leads to disciplinary action for everyone involved.</p>
+      </div>
+      <div class="invert">
+        <span class="lbl">Penalties</span>
+        <h3>What happens if it is found</h3>
+        <ul>
+          <li><strong>Squad activities.</strong> A grade penalty on the public engagement grade for every member of the group, not only the author.</li>
+          <li><strong>Individual assignments.</strong> A grade of F for that assignment, and a transcript recording academic progress up to that point only.</li>
+          <li><strong>Beyond this cohort.</strong> It may affect your prospects for admission to future Takshashila programmes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub" style="margin-top:56px">How to cite</h3>
+    <p>Citations build trust rather than diminishing it — they let a reader consult what you consulted. The house guidance:</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th style="width:26%">Situation</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td>Paraphrasing an author</td><td>Name the author and the year of publication in your text, and carry the full citation as a footnote: author name, paper or article title, publication, year.</td></tr>
+          <tr><td>Using an expert's idea</td><td>Superscript a citation number where the idea appears and put the reference in a footnote at the foot of the page. Keep your own input as the crux of the piece rather than filling the page with references.</td></tr>
+          <tr><td>Research papers</td><td>Author's name, the paper's name, and the page number of the content you used.</td></tr>
+          <tr><td>Electronic sources</td><td>Author's name, the title, and the URL of the page you took the information from. Prefer short URLs. A research paper you read as a PDF was usually published elsewhere first, so it is not an electronic source.</td></tr>
+          <tr><td>Direct quotations</td><td>Enclose the author's words in quotation marks so the borrowed portion begins and ends visibly, and cite it in a footnote. Where you can, summarise in your own words instead — and still name the source.</td></tr>
+          <tr><td>Facts used as evidence</td><td>Ask whether the fact is common knowledge. If it is not, check that it is trustworthy and name the authoritative source.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="aside">
+      <span class="lbl">Before you submit</span>
+      <p>Run your work through a plagiarism checker and read what it tells you. If a citation question falls outside this guidance, ask your instructor rather than guessing — the penalty for plagiarism is considerably higher than the penalty for a late submission.</p>
+    </div>
+
+    <h3 class="sub" style="margin-top:56px">Where AI fits</h3>
+    <div class="split">
+      <div>
+        <p>Takshashila publishes a <a href="https://takshashila.org.in/pages/ai-policy.html" target="_blank" rel="noopener">Statement on the Use of AI ↗</a> setting out the principles the institution applies to its own research, teaching materials and publications. It governs Takshashila's output rather than student submissions, so it is not a set of rules you are graded against — but it is the clearest statement of the judgment the programme expects, and the four principles transfer directly to your own work.</p>
+      </div>
+      <div class="aside" style="margin-top:0">
+        <span class="lbl">The four principles</span>
+        <ul>
+          <li><strong>Accountability.</strong> You are responsible for your work whichever tools helped make it. AI is not an author or a co-creator.</li>
+          <li><strong>Transparency.</strong> AI assistance is disclosed — a line as plain as "this essay was made with the assistance of AI" is the model.</li>
+          <li><strong>Verification.</strong> Anything AI generates, sources included, is independently checked before you rely on it.</li>
+          <li><strong>No substitution.</strong> AI supports the analysis; it does not replace it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. FAQ ============ -->
+<section class="section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq">
+
+      <h3>Specialisation</h3>
+      <details>
+        <summary>I do not remember choosing a specialisation. Which am I in?</summary>
+        <div class="details-body"><p>It is named in your acceptance email. A form to change specialisation, along with other details, will be circulated after the Academic Conference.</p></div>
+      </details>
+      <details>
+        <summary>Can I switch specialisation?</summary>
+        <div class="details-body">
+          <p>Yes, at the Academic Conference in Week 5 — that is the point at which the cohort splits, and the conference tracks are organised around the three specialisations so you can get a feel for each before deciding.</p>
+          <p>One exception: armed forces personnel nominated by the defence services for Defence and Foreign Affairs cannot switch.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Can I do more than one specialisation?</summary>
+        <div class="details-body"><p>Not within one cohort. You can take another in a future cohort, and the team will share how after you complete this one.</p></div>
+      </details>
+
+      <h3>Attendance and recordings</h3>
+      <details>
+        <summary>How is attendance recorded?</summary>
+        <div class="details-body"><p>It is not recorded for ordinary Saturday webinars. For the Academic Conference, attendance reports are pulled from Webex. Workshop attendance is recorded too.</p></div>
+      </details>
+      <details>
+        <summary>Is attendance graded?</summary>
+        <div class="details-body"><p>No — except that the Academic Conference and your workshop are compulsory for the certificate. Around 70% attendance is recommended: students who reach it tend to get more out of the programme and complete it.</p></div>
+      </details>
+      <details>
+        <summary>Where do I find recordings and slides?</summary>
+        <div class="details-body"><p>Open Takshashila → Learner's Guide → Resources. Sections are named after each webinar. Recordings go up 24 to 48 hours after the session, with all the readings hyperlinked alongside. Session slides are posted to Open Takshashila as well.</p></div>
+      </details>
+      <details>
+        <summary>I am not getting the class emails.</summary>
+        <div class="details-body"><p>Write to your specialisation mailbox with the address you registered under, and check your spam folder in the meantime. The Google Calendar link and the Open Takshashila invitation were both sent in the welcome email.</p></div>
+      </details>
+      <details>
+        <summary>The readings look like a lot. How much is really expected?</summary>
+        <div class="details-body"><p>Plan for five to six hours a week. Finish the mandatory readings; the recommended ones can come later. Coming in having understood the concept is enough — the webinars are instructive even if you start from zero.</p></div>
+      </details>
+
+      <h3>Assessment and submissions</h3>
+      <details>
+        <summary>What is the pass mark out of 100?</summary>
+        <div class="details-body"><p>There is not one. The certificate depends on completing every component of your specialisation. For Advanced Public Policy and Technology and Policy that means the public engagement requirements, the final assignment including the viva, the Academic Conference and the workshop. For Defence and Foreign Affairs it means both quizzes, the conference and Exercise AMRUT.</p></div>
+      </details>
+      <details>
+        <summary>Are there assignments after each Saturday?</summary>
+        <div class="details-body"><p>No. There are two to three squad activities across the programme, circulated by email and on Open Takshashila, and then the final assignment.</p></div>
+      </details>
+      <details>
+        <summary>Are policy output points additive, or does only one submission count?</summary>
+        <div class="details-body"><p>Additive, up to a cap of 10. One op-ed gets you there on its own. Five blog posts do the same. Any mix works. Producing more than 10 points' worth is welcome but does not score higher.</p></div>
+      </details>
+      <details>
+        <summary>When are things due?</summary>
+        <div class="details-body">
+          <ul>
+            <li><strong>Community Organisation Exercise</strong> — around Week 10, early November. Briefed in Week 4.</li>
+            <li><strong>Policy outputs</strong> — any time from now until roughly two weeks after the final webinar; expect a deadline in the first half of December, confirmed when the submission form goes out.</li>
+            <li><strong>Final assignment</strong> — released after the final webinar on 21 November, with about two weeks to write it. First or second week of December.</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>Can I use AI for my work?</summary>
+        <div class="details-body">
+          <p>For learning, yes, and the programme will show you how — NotebookLM is built into the reading library. Not as a replacement for your own analysis. The final assignment is split between a written submission and a viva precisely so that what is assessed is your understanding rather than your output.</p>
+          <p>Takshashila's <a href="https://takshashila.org.in/pages/ai-policy.html" target="_blank" rel="noopener">Statement on the Use of AI ↗</a> sets out the institution's own principles: accountability, disclosure, independent verification, and no substitution for your own thinking. Worth reading before you lean on a tool.</p>
+        </div>
+      </details>
+
+      <h3 data-track="app tp">Public engagement</h3>
+      <details data-track="app tp">
+        <summary>Will I get guidance, or am I on my own?</summary>
+        <div class="details-body"><p>There is a dedicated session on writing for public policy, timed to land as public engagement opens. Prompts will be posted during the specialisation weeks to get you started.</p></div>
+      </details>
+      <details data-track="app tp">
+        <summary>Does my public engagement work have to stick to one theme?</summary>
+        <div class="details-body"><p>No. Pick areas you are already interested in and apply what you are learning in the programme to them. Past cohorts have written on education, growth, climate and much else, across a mix of platforms.</p></div>
+      </details>
+      <details data-track="app tp">
+        <summary>My organisation will not let me publish. What then?</summary>
+        <div class="details-body"><p>Send your blog post in as an unpublished document and it will be considered. An op-ed will not work, since publication in a recognised outlet is part of what makes it one. If you are in Technology and Policy, the in-class debates are a second route to the same points.</p></div>
+      </details>
+      <details data-track="app tp">
+        <summary>Does a podcast have to have video? Can it be an animated explainer?</summary>
+        <div class="details-body"><p>No video needed — the only requirement is at least two people speaking. Animated explainers are not the standard format but can be considered. Propose it before you build it. You can set up your own podcast account and publish a discussion with people who share your interest.</p></div>
+      </details>
+      <details data-track="app tp">
+        <summary>Can a blog live on my own website rather than one of the listed platforms?</summary>
+        <div class="details-body"><p>Yes — a personal Substack or a site of your own is fine, including something more elaborate like a data-driven piece. Only op-eds have to appear on a reasonably well-known news platform.</p></div>
+      </details>
+      <details data-track="app tp">
+        <summary>Can I write in a language other than English?</summary>
+        <div class="details-body"><p>Yes. A vernacular op-ed counts.</p></div>
+      </details>
+      <details data-track="tp">
+        <summary>How do the Technology and Policy debates work?</summary>
+        <div class="details-body"><p>Six debates of about twenty minutes each on topical questions — whether social media should be banned for children, that kind of thing. Two debaters, the rest of the cohort as audience, questions, then a vote. They run under the Chatham House Rule and use the Purva Paksha format: you have to state your opponent's case at its strongest before making your own. Two points for taking part, four if you move the room.</p></div>
+      </details>
+
+      <h3>Workshops</h3>
+      <details data-track="app tp">
+        <summary>What are the workshop timings, and where exactly?</summary>
+        <div class="details-body"><p>The Takshashila office on Church Street, Bengaluru, over two nights and three days. Day 1, Friday 13 November, begins at 11:30. Day 3, Sunday 15 November, ends around 16:00. Both are tentative, so leave a margin when booking. Full logistics come by email.</p></div>
+      </details>
+      <details data-track="app tp">
+        <summary>Is the November workshop open to Defence and Foreign Affairs students?</summary>
+        <div class="details-body"><p>No. The 13–15 November workshop is for Advanced Public Policy and Technology and Policy only. Defence and Foreign Affairs has Exercise AMRUT, online, on 27–29 November.</p></div>
+      </details>
+      <details data-track="dfa">
+        <summary>Do Defence and Foreign Affairs students have to travel anywhere?</summary>
+        <div class="details-body"><p>No. Exercise AMRUT is entirely online. The in-person workshop in Bengaluru is for the other two specialisations.</p></div>
+      </details>
+      <details data-track="dfa">
+        <summary>What are the Exercise AMRUT timings?</summary>
+        <div class="details-body"><p>27 and 28 November run the full day. 29 November ends at 14:00. All three days are required.</p></div>
+      </details>
+      <details>
+        <summary>What if I cannot make all three days of my workshop?</summary>
+        <div class="details-body"><p>Workshop attendance is required for a completed certificate. If you miss it you can join the exercise with a later cohort; until then you receive a Citation rather than a completed certificate.</p></div>
+      </details>
+      <details>
+        <summary>Are these dates final?</summary>
+        <div class="details-body"><p>Yes.</p></div>
+      </details>
+
+      <h3>Platforms and access</h3>
+      <details>
+        <summary>Is there an app, or only the website?</summary>
+        <div class="details-body"><p>Open Takshashila runs on Mighty Networks, which has a mobile app — open the site in a mobile browser and you will see the download prompt at the bottom of the screen. On a desktop there is only the website.</p></div>
+      </details>
+      <details>
+        <summary>The browser shows my GCPP45 cohort but the app does not.</summary>
+        <div class="details-body"><p>Log in to the app with the same credentials you use in the browser; otherwise only public groups such as WaterCooler appear. In the app, the cohort sits under <strong>Learn Together</strong>.</p></div>
+      </details>
+      <details>
+        <summary>How do I get the readings into NotebookLM?</summary>
+        <div class="details-body"><p>The reading library is a Google Drive folder linked from the Learner's Guide, under "GCPP Reading Library for NotebookLM". Each module is one condensed PDF. Download the module you want, open a new notebook at notebook.google.com, add it as a source, and start asking questions. One module per notebook.</p></div>
+      </details>
+      <details>
+        <summary>Where should I ask questions and talk to the cohort?</summary>
+        <div class="details-body"><p>The forum inside the GCPP45 space. Not WaterCooler, which is public to everyone on Open Takshashila. Individual questions about your own situation are better sent to your specialisation mailbox.</p></div>
+      </details>
+
+      <h3 data-track="dfa">Quizzes</h3>
+      <details data-track="dfa">
+        <summary>How do I actually take the quizzes?</summary>
+        <div class="details-body"><p>The link is emailed to the Defence and Foreign Affairs cohort when each quiz opens. Quiz 1 stays open for ten days and you may attempt it once. Quiz 2 is a fixed hour on 6 or 13 December — log in and start; there is no need to tell the team which date you are taking.</p></div>
+      </details>
+      <details data-track="dfa">
+        <summary>What format are the quizzes?</summary>
+        <div class="details-body"><p>Multiple choice and timed. Quiz 1 is about 30 minutes; Quiz 2 is an hour.</p></div>
+      </details>
+
+      <h3>Academic integrity</h3>
+      <details>
+        <summary>How strictly is plagiarism handled?</summary>
+        <div class="details-body"><p>Strictly. Citations and a bibliography are required on everything you submit. In a squad activity, plagiarism reflects on the entire squad. There are penalties in the final assignment. Run a plagiarism check on your own work before you submit it.</p></div>
+      </details>
+      <details>
+        <summary>What is the difference between a citation and a mention?</summary>
+        <div class="details-body"><p>A mention is where you refer to a source inside your text — in the paragraph, as you use it. A citation is the full entry in the list at the end, covering every page, paper and piece of literature you drew on. Both are expected.</p></div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. CONTACT ============ -->
+<section class="section deep">
+  <div class="container">
+    <p class="eyebrow">Reach out</p>
+    <h2>Write to your <em>specialisation</em></h2>
+    <p>Each specialisation has its own mailbox, and questions about your own situation are better sent there than posted in the forum.</p>
+    <div class="contacts">
+      <div>
+        <span class="k">APP</span>
+        <div class="n">Advanced Public Policy</div>
+        <a href="mailto:gcpp@takshashila.org.in">gcpp@takshashila.org.in</a>
+      </div>
+      <div>
+        <span class="k">TP</span>
+        <div class="n">Technology and Policy</div>
+        <a href="mailto:gctp@takshashila.org.in">gctp@takshashila.org.in</a>
+      </div>
+      <div>
+        <span class="k">DFA</span>
+        <div class="n">Defence and Foreign Affairs</div>
+        <a href="mailto:dfa@takshashila.org.in">dfa@takshashila.org.in</a>
+      </div>
+    </div>
+    <div class="aside">
+      <span class="lbl">Working hours</span>
+      <p>The Takshashila staff work Tuesday to Saturday, 9:00 to 17:00. Sunday and Monday are their weekend, so expect replies within those hours.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <strong>The Takshashila Institution</strong>
+    <span>Graduate Certificate in Public Policy</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.track-btn');
+  var blocks = document.querySelectorAll('[data-track]:not(.track-btn)');
+  function show(track){
+    blocks.forEach(function(el){
+      el.hidden = el.dataset.track.split(' ').indexOf(track) === -1;
+    });
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.track === track));
+    });
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ show(b.dataset.track); });
+  });
+  show('app');
+})();
+</script>
+
+</body>
+</html>
