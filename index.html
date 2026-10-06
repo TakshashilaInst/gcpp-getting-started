@@ -139,6 +139,9 @@ h3{font-size:18px;font-weight:500;line-height:1.3;margin-bottom:12px}
 .aside p{font-size:15px;max-width:62ch}
 .aside ul{max-width:62ch;padding-left:20px;margin:0}
 .aside li{margin-bottom:8px}
+ul.plain{max-width:68ch;padding-left:20px;margin:0}
+ul.plain li{margin-bottom:11px}
+ul.plain li:last-child{margin-bottom:0}
 
 .invert{background:var(--ink);color:rgba(255,255,255,.85);padding:40px 36px}
 .invert .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
@@ -313,8 +316,18 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
     <div class="split">
       <div>
         <h2>How the twelve weeks are <em>structured</em></h2>
-        <p>Everyone in the cohort studies the same three core modules for the first four weeks. Week 5 is the Takshashila Academic Conference, which closes the core curriculum. From Week 6 the cohort splits and you follow your own specialisation for seven weeks, ending in a workshop.</p>
-        <p>Assessment differs by specialisation and nothing else does. Advanced Public Policy and Technology and Policy are graded on published work and a final assignment; Defence and Foreign Affairs is graded on two quizzes. The switcher above sets the page to yours.</p>
+        <div data-track="app tp">
+          <p>Everyone in the cohort studies the same three core modules for the first four weeks. Week 5 is the Takshashila Academic Conference, which closes the core curriculum. From Week 6 the cohort splits and you follow your own specialisation for seven weeks, ending in a workshop.</p>
+          <p>Assessment differs by specialisation and nothing else does. Advanced Public Policy and Technology and Policy are graded on published work and a final assignment; Defence and Foreign Affairs is graded on two quizzes. The switcher above sets the page to yours.</p>
+        </div>
+        <ul class="plain" data-track="dfa" hidden>
+          <li><strong>Weeks 1–4.</strong> Three core modules, taken by the whole cohort, whatever the specialisation.</li>
+          <li><strong>Week 5.</strong> The Takshashila Academic Conference, which closes the core curriculum. Two days, both compulsory.</li>
+          <li><strong>Break week.</strong> No webinars. Defence and Foreign Affairs only.</li>
+          <li><strong>Weeks 6–11.</strong> Three specialisation modules, plus midweek guest sessions.</li>
+          <li><strong>Week 12.</strong> Exercise AMRUT, online, over three days. Compulsory.</li>
+          <li><strong>Assessment.</strong> Two quizzes and nothing else. Quiz 1 after the conference, Quiz 2 after Exercise AMRUT.</li>
+        </ul>
       </div>
       <div class="aside">
         <span class="lbl">Five things to keep in mind</span>
@@ -342,7 +355,9 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
       <li>
         <span class="code">Weeks 6–12</span>
         <div class="who">Specialisation</div>
-        <p class="what">Four modules in your own stream, discussion-led rather than lecture-led, closing with a workshop.</p>
+        <p class="what" data-track="app">Three modules in your own stream, discussion-led rather than lecture-led, closing with a workshop.</p>
+        <p class="what" data-track="tp" hidden>Four modules in your own stream, discussion-led rather than lecture-led, closing with a workshop.</p>
+        <p class="what" data-track="dfa" hidden>Three modules in your own stream, discussion-led rather than lecture-led, closing with a workshop.</p>
       </li>
     </ol>
   </div>
@@ -435,21 +450,13 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
           <div class="marks" style="grid-template-columns:repeat(5,1fr) .7fr repeat(7,1fr)">
             <div class="mk" style="grid-column:1/5"><b>Weeks 1–4</b>Three core modules, shared with the whole cohort.</div>
             <div class="mk" style="grid-column:5/7"><b>Week 5</b>Academic Conference, both days. Quiz 1 opens the day after and stays open ten days.</div>
-            <div class="mk" style="grid-column:7/13"><b>Weeks 6–11</b>Four specialisation modules, plus midweek guest sessions with former ambassadors and practitioners.</div>
+            <div class="mk" style="grid-column:7/13"><b>Weeks 6–11</b>Three specialisation modules, plus midweek guest sessions with former ambassadors and practitioners.</div>
             <div class="mk" style="grid-column:13/14"><b>Week 12</b>Exercise AMRUT, online, all three days.</div>
           </div>
         </div>
       </div>
       <h3 class="after-h">After Week 12</h3>
       <ol class="seq">
-        <li>
-          <div class="dt">6 December</div>
-          <div><div class="dn">Final quiz, slot 1</div><p class="dx">One hour, 20:00–21:00.</p></div>
-        </li>
-        <li>
-          <div class="dt">13 December</div>
-          <div><div class="dn">Final quiz, slot 2</div><p class="dx">Same format. Sit either date, not both — there is no need to tell the team which.</p></div>
-        </li>
         <li>
           <div class="dt">Once evaluation concludes</div>
           <div><div class="dn">Final grades, then certificates</div><p class="dx">Grades are shared with you first; certificates follow.</p></div>
@@ -580,7 +587,7 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
       <h3 class="sub">Defence and Foreign Affairs</h3>
       <ol class="ruled">
         <li><span class="code">CS1</span><div class="who">Strategic Studies and International Relations</div><p class="what">Military power in global affairs, and where India sits in it.</p></li>
-        <li><span class="code">CS2</span><div class="who">Introduction to Arthashastra</div><p class="what">A classical text read for what it still says about statecraft today.</p></li>
+        <li><span class="code">CS2</span><div class="who">Introduction to Arthashastra</div><p class="what">An introduction to the ancient treatise written by Kautilya and how it is still relevant when analysing Indian statecraft today.</p></li>
         <li><span class="code">CS3</span><div class="who">Strategic Economics</div><p class="what">Sanctions, tariffs and supply chains as instruments of national power.</p></li>
       </ol>
     </div>
@@ -640,7 +647,7 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
         <div class="invert">
           <span class="lbl">If you cannot publish</span>
           <p>Some employers restrict public writing. If yours does, send your blog post in as an unpublished document and it will be considered. An op-ed will not work in that case, since the outlet is part of what it is.</p>
-          <p>Technology and Policy students have a second route: the in-class debates. Two points for taking part, four if the room votes your way.</p>
+          <p data-track="tp">Technology and Policy students have a second route: the in-class debates. Two points for taking part, four if the room votes your way.</p>
         </div>
       </div>
 
@@ -700,13 +707,13 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
               <td>Quiz 1</td>
               <td><span class="tag grade">40%</span></td>
               <td>Released the day after the Academic Conference, open for ten days</td>
-              <td>Covers the core modules. Multiple choice, timed at about 30 minutes, one attempt only. Keep one of those ten days free — once you start, that is your attempt.</td>
+              <td>Covers the core modules. Multiple choice, timed at about 30 minutes. You can attempt the quiz once in a single sitting, so keep one of those ten days free.</td>
             </tr>
             <tr>
               <td>Quiz 2<br><span style="color:var(--ink-50);font-size:13px">final evaluation</span></td>
               <td><span class="tag grade">60%</span></td>
-              <td>6 December or 13 December, 20:00–21:00</td>
-              <td>Held after Exercise AMRUT. Two slots on consecutive Sundays; sit whichever suits you, not both. One hour, multiple choice. You do not need to tell the team which date you are taking — just log in and start.</td>
+              <td>After Exercise AMRUT, in one of two evening slots — see Important Dates to Note</td>
+              <td>Two slots on consecutive Sundays; sit whichever suits you, not both. One hour, multiple choice. You do not need to tell the team which date you are taking — just log in and start.</td>
             </tr>
           </tbody>
         </table>
@@ -719,7 +726,12 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
 
       <div class="invert" style="margin-top:40px">
         <span class="lbl">What the certificate needs</span>
-        <p>Both quizzes, both days of the Academic Conference, and all three days of Exercise AMRUT. Attendance at the ordinary Saturday webinars is not graded — but Exercise AMRUT is a simulation, and missing a day of it means you receive a Citation rather than a completed certificate until you sit the exercise with a later cohort.</p>
+        <ul>
+          <li>Both quizzes.</li>
+          <li>Attendance on <strong>both days</strong> of the Takshashila Academic Conference.</li>
+          <li>Attendance on <strong>all three days</strong> of Exercise AMRUT.</li>
+        </ul>
+        <p style="margin-top:16px">Attendance at the ordinary Saturday webinars is not graded. Exercise AMRUT is a simulation, so missing a day of it means you receive a Citation rather than a completed certificate until you sit the exercise with a later cohort.</p>
       </div>
     </div>
   </div>
@@ -753,7 +765,6 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
           <h2>Exercise AMRUT, <em>online</em></h2>
           <p>Exercise AMRUT runs from Friday 27 to Sunday 29 November and is entirely online. The 27th and 28th run the full day; the 29th ends at 14:00. It is a simulation exercise and it closes the webinars for the specialisation.</p>
           <p>Attendance on all three days is required. If work makes one of the days impossible, you can sit Exercise AMRUT with a later cohort — but until you do, you receive a Citation rather than a completed certificate, so it is worth protecting the dates now.</p>
-          <p>The in-person workshop on 13–15 November is for Advanced Public Policy and Technology and Policy. Defence and Foreign Affairs students do not attend it.</p>
         </div>
         <div class="invert">
           <span class="lbl">Compulsory</span>
@@ -1035,7 +1046,7 @@ footer strong{font-weight:400;font-size:15px;color:#fff}
       <h3 data-track="dfa">Quizzes</h3>
       <details data-track="dfa">
         <summary>How do I actually take the quizzes?</summary>
-        <div class="details-body"><p>The link is emailed to the Defence and Foreign Affairs cohort when each quiz opens. Quiz 1 stays open for ten days and you may attempt it once. Quiz 2 is a fixed hour on 6 or 13 December — log in and start; there is no need to tell the team which date you are taking.</p></div>
+        <div class="details-body"><p>The link is emailed to the Defence and Foreign Affairs cohort when each quiz opens. Log in and start — there is no need to tell the team which date you are taking. Dates are under Important Dates to Note.</p></div>
       </details>
       <details data-track="dfa">
         <summary>What format are the quizzes?</summary>
